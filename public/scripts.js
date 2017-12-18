@@ -71,7 +71,10 @@ const fetchItems = () => {
 
 const toggleDoor = () => {
   $('#garage-door').slideToggle(3000, () => {
-    console.log('doing thing');
+    const text = $('#garage-button').text();
+    text === 'Open Garage' ?
+      $('#garage-button').text('Close Garage') :
+      $('#garage-button').text('Open Garage')
   });
 }
 
