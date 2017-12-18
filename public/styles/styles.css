@@ -18,6 +18,15 @@
   background-color: #788AA3;
   margin: auto; }
 
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+select.single-item-cleanliness {
+  width: 100px;
+  height: 50px; }
+
 #controls {
   height: 25vh;
   width: 100vw; }
