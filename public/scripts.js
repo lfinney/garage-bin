@@ -30,9 +30,7 @@ const createNewItem = (event) => {
 
 const selectOption = (cleanliness) => {
   let cleanlinessOptions = ['Sparkling', 'Dusty', 'Rancid']
-  cleanlinessOptions = cleanlinessOptions.filter(option => option !== cleanliness);
-
-  return cleanlinessOptions.unshift(cleanliness);
+  return cleanlinessOptions.filter(option => option !== cleanliness);
 }
 
 const sortItems = (items) => {
@@ -51,18 +49,17 @@ const sortItems = (items) => {
 }
 
 const appendItems = (item) => {
-  
-    $(`#item-list`).append(`
-      <div id="item-${item.id}" class="item">
+  const itemToAppend =
+    `<div id="item-${item.id}" class="item">
         <h2 class="name">${item.name}</h2>
         <p class="reason">${item.reason}</p>
         <select class="single-item-cleanliness" name="cleanliness">
-          <option value="Sparkling">${item.cleanliness}</option>
-          <option value="Dusty">${selectOption(item.cleanliness)[1]}</option>
-          <option value="Rancid">${selectOption(item.cleanliness)[2]}</option>
+          <option value="${item.cleanliness}">${item.cleanliness}</option>
+          <option value="Dusty">${selectOption(item.cleanliness)[0]}</option>
+          <option value="Rancid">${selectOption(item.cleanliness)[1]}</option>
         </select>
-      </div>
-    `)
+      </div>`
+  $(`#item-list`).append(itemToAppend);
 }
 
 const filterType = (items, type) => {
