@@ -1,3 +1,31 @@
+#garage {
+  height: 75vh;
+  width: 100vw; }
 
+#garage-door {
+  height: 100%;
+  width: 100%;
+  background-image: url(../assets/door-texture.png);
+  background-size: 50%;
+  background-color: #2A2C37;
+  overflow: hidden; }
+
+#controls {
+  height: 25vh;
+  width: 100vw; }
+
+#build-item {
+  width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.build-input {
+  width: 100%;
+  margin: 10px 0; }
+
+#submit-item, #item-cleanliness {
+  width: 50%; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -2,10 +2,31 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="/styles/styles.css">
     <title>Garage Bin</title>
   </head>
   <body>
-    Sup, Duck?
+    <section id="garage">
+      <div id="garage-door">
+
+      </div>
+      <div id="item-list">
+
+      </div>
+    </section>
+    <section id="controls">
+      <form action="submit" id="build-item">
+        <input class="build-input" type="text" placeholder="Item Name" />
+        <input class="build-input" type="text" placeholder="Reason for Keeping" />
+        <select class="build-input" name="cleanliness" id="item-cleanliness">
+          <option value="">-Select Cleanliness-</option>
+          <option value="">Sparkling</option>
+          <option value="">Dusty</option>
+          <option value="">Rancid</option>
+        </select>
+        <button class="build-input" id="submit-item">Put in Garage</button>
+      </form>
+    </section>
   </body>
 </html>
