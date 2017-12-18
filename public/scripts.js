@@ -52,12 +52,14 @@ const appendItems = (item) => {
   const itemToAppend =
     `<div id="item-${item.id}" class="item">
         <h2 class="name">${item.name}</h2>
-        <p class="reason">${item.reason}</p>
-        <select class="single-item-cleanliness" name="cleanliness">
-          <option value="${item.cleanliness}">${item.cleanliness}</option>
-          <option value="Dusty">${selectOption(item.cleanliness)[0]}</option>
-          <option value="Rancid">${selectOption(item.cleanliness)[1]}</option>
-        </select>
+        <div class="item-info hidden">
+          <p class="reason">${item.reason}</p>
+          <select class="single-item-cleanliness" name="cleanliness">
+            <option value="${item.cleanliness}">${item.cleanliness}</option>
+            <option value="Dusty">${selectOption(item.cleanliness)[0]}</option>
+            <option value="Rancid">${selectOption(item.cleanliness)[1]}</option>
+          </select>
+        </div>
       </div>`
   $(`#item-list`).append(itemToAppend);
 }
@@ -99,8 +101,16 @@ const toggleAlpha = () => {
 
 }
 
+const toggleListView = (target) => {
+console.log($(event.target).next('div'));
+$(event.target).next('.item-info').toggleClass('hidden');
+
+
+}
+
 fetchItems();
 
-$('#submit-item').on('click', (event) => createNewItem(event))
-$('#garage-button').on('click', toggleDoor)
-$('#sort-alpha').on('click', toggleAlpha)
+$('#submit-item').on('click', (event) => createNewItem(event));
+$('#garage-button').on('click', toggleDoor);
+$('#sort-alpha').on('click', toggleAlpha);
+$('#item-list').on('click', 'h2', (event) => toggleListView(event))
