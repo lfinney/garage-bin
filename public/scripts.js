@@ -7,7 +7,6 @@ const postItem = (item) => {
     }
   })
   .then(response => response.json())
-  .then(res => console.log(res))
   .catch(error => console.error(error))
 }
 
@@ -26,6 +25,8 @@ const createNewItem = (event) => {
   }
   postItem(newItem);
   resetInputs();
+  clearList();
+  fetchItems('alpha');
 }
 
 const selectOption = (cleanliness) => {
@@ -72,8 +73,8 @@ const appendItems = (item) => {
           <p class="reason">${item.reason}</p>
           <select class="single-item-cleanliness" name="cleanliness">
             <option value="${item.cleanliness}">${item.cleanliness}</option>
-            <option value="Dusty">${selectOption(item.cleanliness)[0]}</option>
-            <option value="Rancid">${selectOption(item.cleanliness)[1]}</option>
+            <option value="${selectOption(item.cleanliness)[0]}">${selectOption(item.cleanliness)[0]}</option>
+            <option value="${selectOption(item.cleanliness)[1]}">${selectOption(item.cleanliness)[1]}</option>
           </select>
         </div>
       </div>`
@@ -117,6 +118,26 @@ const toggleListView = (target) => {
   $(event.target).next('.item-info').toggleClass('hidden');
 }
 
+const patchCondition = (id, condition) => {
+  fetch(`api/v1/garageItems/${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ cleanliness: condition }),
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+  .then(res => console.log(res))
+  // .then(response => response.json())
+  .catch(error => console.error(error))
+}
+
+const updateCondition = (event) => {
+  const itemId = $(event.target).closest('.item').attr('id').split('-')[1];
+  const itemCleanliness = $(event.target).val();
+
+  patchCondition(itemId, itemCleanliness);
+}
+
 const clearList = () => {
   $('#items').html('')
 }
@@ -127,4 +148,5 @@ $('#submit-item').on('click', (event) => createNewItem(event));
 $('#garage-button').on('click', toggleDoor);
 $('#sort-alpha').on('click', () => fetchItems('alpha'));
 $('#sort-reverse-alpha').on('click', () => fetchItems('reverse'));
-$('#item-list').on('click', 'h2', (event) => toggleListView(event))
+$('#item-list').on('click', 'h2', (event) => toggleListView(event));
+$('#item-list').on('change', 'select', (event) => updateCondition(event));

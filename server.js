@@ -62,18 +62,21 @@ app.post('/api/v1/garageItems', (request, response) => {
 
 app.patch('/api/v1/garageItems/:id', (request, response) => {
   const { id } = request.params;
-  const itemUpdate = request.body;
+  const cleanliness = request.body.cleanliness;
 
-  if (!itemUpdate.cleanliness) {
+  console.log(cleanliness);
+
+
+  if (!cleanliness) {
     return response.status(422).json({
       error: 'You must only send an object literal to this endpoint'
     });
   }
 
   database('garage_items').where('id', id)
-    .update(itemUpdate, '*')
+    .update({cleanliness: cleanliness})
     .then((update) => {
-      if (!update.length) {
+      if (!update) {
         return response.sendStatus(404);
       }
       return response.sendStatus(204);
