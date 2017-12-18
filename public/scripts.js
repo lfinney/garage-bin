@@ -1,5 +1,14 @@
 const postItem = (item) => {
-  console.log(item);
+  fetch('api/v1/garageItems', {
+    method: 'POST',
+    body: JSON.stringify( item ),
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(res => console.log(res))
+  .catch(error => console.error(error))
 }
 
 const createNewItem = (event) => {
