@@ -17,7 +17,7 @@ app.get('/', (request, response) => {
   response.send('Oh, hai!');
 });
 
-app.get('/api/v1/items', (request, response) => {
+app.get('/api/v1/garageItems', (request, response) => {
   database('garage_items').select()
     .then((items) => {
       return response.status(200).json(items);
@@ -27,7 +27,7 @@ app.get('/api/v1/items', (request, response) => {
     });
 });
 
-app.get('/api/v1/items/:id', (request, response) => {
+app.get('/api/v1/garageItems/:id', (request, response) => {
   const { id } = request.params;
 
   database('garage_items').where('id', id).select()
@@ -39,6 +39,31 @@ app.get('/api/v1/items/:id', (request, response) => {
     });
 });
 
+app.post('/api/v1/garageItems', (request, response) => {
+  const item = request.body;
+  console.log(item);
+
+  for (const requiredParameter of ['name', 'reason', 'cleanliness']) {
+    if (!item[requiredParameter]){
+      return response.status(422).json({
+        error: `You are missing the ${requiredParameter} category`
+      });
+    }
+  }
+
+  database('garage_items').insert(item, 'id')
+    .then((itemId) => {
+      return response.status(201).json({ id: itemId[0] });
+    })
+    .catch((error) => {
+      return response.status(500).json({ error });
+    });
+});
+
+
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);
 });
+
+module.exports = app;
