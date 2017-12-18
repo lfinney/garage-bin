@@ -64,7 +64,7 @@ app.patch('/api/v1/garageItems/:id', (request, response) => {
   const { id } = request.params;
   const itemUpdate = request.body;
 
-  if (!itemUpdate) {
+  if (!itemUpdate.cleanliness) {
     return response.status(422).json({
       error: 'You must only send an object literal to this endpoint'
     });

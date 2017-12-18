@@ -11,6 +11,12 @@ const postItem = (item) => {
   .catch(error => console.error(error))
 }
 
+const resetInputs = () => {
+  $('#item-name').val('')
+  $('#item-reason').val('')
+  $('#item-cleanliness').val($('#item-cleanliness option:first').val())
+}
+
 const createNewItem = (event) => {
   event.preventDefault();
   const newItem = {
@@ -18,12 +24,8 @@ const createNewItem = (event) => {
     reason: $('#item-reason').val(),
     cleanliness: $('#item-cleanliness option:selected').text()
   }
-
   postItem(newItem);
-
-  $('#item-name').val('')
-  $('#item-reason').val('')
-  $('#item-cleanliness').val($('#item-cleanliness option:first').val())
+  resetInputs();
 }
 
 // const selectOption = (cleanliness) => {
