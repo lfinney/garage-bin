@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Garage Bin';
+app.use(express.static(__dirname + '/public'));
 
 
 app.get('/', (request, response) => {
