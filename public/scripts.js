@@ -1,3 +1,7 @@
+const postItem = (item) => {
+  console.log(item);
+}
+
 const createNewItem = (event) => {
   event.preventDefault();
   const newItem = {
@@ -6,7 +10,11 @@ const createNewItem = (event) => {
     cleanliness: $('#item-cleanliness option:selected').text()
   }
 
-  console.log(newItem);
+  postItem(newItem);
+
+  $('#item-name').val('')
+  $('#item-reason').val('')
+  $('#item-cleanliness').val($('#item-cleanliness option:first').val())
 }
 
 // const selectOption = (cleanliness) => {

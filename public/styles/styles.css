@@ -16,7 +16,8 @@
   width: 75%;
   min-width: 400px;
   background-color: #788AA3;
-  margin: auto; }
+  margin: auto;
+  overflow: scroll; }
 
 #garage-overview {
   display: flex;
