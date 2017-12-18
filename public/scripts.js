@@ -68,9 +68,14 @@ const fetchItems = () => {
     .catch(error => console.error(error))
 }
 
-const pageLoad = () => {
-  fetchItems();
+
+const toggleDoor = () => {
+  $('#garage-door').slideToggle(3000, () => {
+    console.log('doing thing');
+  });
 }
 
-$(document).ready(pageLoad);
+fetchItems();
+
 $('#submit-item').on('click', (event) => createNewItem(event))
+$('#garage-button').on('click', toggleDoor)

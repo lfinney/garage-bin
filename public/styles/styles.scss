@@ -7,12 +7,13 @@
 }
 
 #garage-door {
-  height: 100%;
+  height: 75vh;
   width: 100%;
   background-image: url(../assets/door-texture.png);
   background-size: 50%;
   background-color: $darkmain;
   overflow: hidden;
+  position: absolute;
 }
 
 #item-list {
@@ -36,7 +37,7 @@
 
 .item {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
@@ -47,8 +48,16 @@ select.single-item-cleanliness {
 
 
 #controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   height: 25vh;
   width: 100vw;
+}
+
+#garage-button {
+  width: 200px;
 }
 
 #build-item {
