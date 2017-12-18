@@ -1,6 +1,7 @@
 #garage {
   height: 75vh;
-  width: 100vw; }
+  width: 100vw;
+  background-color: #414456; }
 
 #garage-door {
   height: 100%;
@@ -9,6 +10,13 @@
   background-size: 50%;
   background-color: #2A2C37;
   overflow: hidden; }
+
+#item-list {
+  height: 100%;
+  width: 75%;
+  min-width: 400px;
+  background-color: #788AA3;
+  margin: auto; }
 
 #controls {
   height: 25vh;
