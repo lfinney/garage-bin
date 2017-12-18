@@ -41,7 +41,6 @@ app.get('/api/v1/garageItems/:id', (request, response) => {
 
 app.post('/api/v1/garageItems', (request, response) => {
   const item = request.body;
-  console.log(item);
 
   for (const requiredParameter of ['name', 'reason', 'cleanliness']) {
     if (!item[requiredParameter]){
@@ -54,6 +53,29 @@ app.post('/api/v1/garageItems', (request, response) => {
   database('garage_items').insert(item, 'id')
     .then((itemId) => {
       return response.status(201).json({ id: itemId[0] });
+    })
+    .catch((error) => {
+      return response.status(500).json({ error });
+    });
+});
+
+app.patch('/api/v1/garageItems/:id', (request, response) => {
+  const { id } = request.params;
+  const itemUpdate = request.body;
+
+  if (!itemUpdate) {
+    return response.status(422).json({
+      error: 'You must only send an object literal to this endpoint'
+    });
+  }
+
+  database('garage_items').where('id', id)
+    .update(itemUpdate, '*')
+    .then((update) => {
+      if (!update.length) {
+        return response.sendStatus(404);
+      }
+      return response.sendStatus(204);
     })
     .catch((error) => {
       return response.status(500).json({ error });
