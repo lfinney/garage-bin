@@ -18,6 +18,14 @@
   background-color: #788AA3;
   margin: auto; }
 
+#garage-overview {
+  display: flex;
+  flex-direction: column; }
+
+#item-counts {
+  display: flex;
+  justify-content: space-between; }
+
 .item {
   display: flex;
   justify-content: space-between;
