@@ -33,19 +33,35 @@ const selectOption = (cleanliness) => {
   return cleanlinessOptions.filter(option => option !== cleanliness);
 }
 
-const sortItems = (items) => {
-  const sortedItems = items.sort((a, b) => {
-    let nameA = a.name.toUpperCase();
-    let nameB = b.name.toUpperCase();
-  if (nameA < nameB) {
-    return -1;
+const sortItems = (items, sort) => {
+  if (sort === 'alpha') {
+    const sortedItems = items.sort((a, b) => {
+      let nameA = a.name.toUpperCase();
+      let nameB = b.name.toUpperCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+    })
+    sortedItems.forEach(item => appendItems(item));
   }
-  if (nameA > nameB) {
-    return 1;
+  if (sort === 'reverse') {
+    const sortedItems = items.sort((a, b) => {
+      let nameA = a.name.toUpperCase();
+      let nameB = b.name.toUpperCase();
+    if (nameA > nameB) {
+      return -1;
+    }
+    if (nameA < nameB) {
+      return 1;
+    }
+    return 0;
+    })
+    sortedItems.forEach(item => appendItems(item));
   }
-  return 0;
-  })
-  appendItems(sortedItems);
 }
 
 const appendItems = (item) => {
@@ -61,7 +77,7 @@ const appendItems = (item) => {
           </select>
         </div>
       </div>`
-  $(`#item-list`).append(itemToAppend);
+  $(`#items`).append(itemToAppend);
 }
 
 const filterType = (items, type) => {
@@ -76,12 +92,12 @@ const appendCount = (parsedItems) => {
   $('#total-rancid').text(`${filterType(parsedItems, 'Rancid')} - Rancid`)
 }
 
-const fetchItems = () => {
+const fetchItems = (sort) => {
   fetch(`/api/v1/garageItems`)
     .then(response => response.json())
     .then(parsedItems => {
-      parsedItems.forEach(item => appendItems(item));
-      sortItems(parsedItems);
+      clearList();
+      sortItems(parsedItems, sort);
       appendCount(parsedItems);
     })
     .catch(error => console.error(error))
@@ -97,20 +113,18 @@ const toggleDoor = () => {
   });
 }
 
-const toggleAlpha = () => {
-
-}
-
 const toggleListView = (target) => {
-console.log($(event.target).next('div'));
-$(event.target).next('.item-info').toggleClass('hidden');
-
-
+  $(event.target).next('.item-info').toggleClass('hidden');
 }
 
-fetchItems();
+const clearList = () => {
+  $('#items').html('')
+}
+
+fetchItems('alpha');
 
 $('#submit-item').on('click', (event) => createNewItem(event));
 $('#garage-button').on('click', toggleDoor);
-$('#sort-alpha').on('click', toggleAlpha);
+$('#sort-alpha').on('click', () => fetchItems('alpha'));
+$('#sort-reverse-alpha').on('click', () => fetchItems('reverse'));
 $('#item-list').on('click', 'h2', (event) => toggleListView(event))

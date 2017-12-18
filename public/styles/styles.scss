@@ -41,6 +41,11 @@
   align-items: center;
 }
 
+.item-info {
+  display: flex;
+  justify-content: space-around;
+}
+
 select.single-item-cleanliness {
   width: 100px;
   height: 50px;
