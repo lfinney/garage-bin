@@ -35,6 +35,21 @@ const createNewItem = (event) => {
 //   return cleanlinessOptions.unshift(cleanliness);
 // }
 
+const sortItems = (items) => {
+  const sortedItems = items.sort((a, b) => {
+    let nameA = a.name.toUpperCase();
+    let nameB = b.name.toUpperCase();
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+  return 0;
+  })
+  appendItems(sortedItems);
+}
+
 const appendItems = (items) => {
   items.forEach((item) => {
     // cleanlinessSelection = selectOption(item.cleanliness);
@@ -63,7 +78,7 @@ const fetchItems = () => {
     .then(response => response.json())
     .then(parsedItems => {
       appendCount(parsedItems)
-      appendItems(parsedItems)
+      sortItems(parsedItems)
     })
     .catch(error => console.error(error))
 }
