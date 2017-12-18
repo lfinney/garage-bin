@@ -13,7 +13,8 @@
       </div>
       <div id="item-list">
         <div id="garage-overview">
-          <button id="sort-alpha">Sort Alphabetically</button>
+          <button id="sort-alpha">Sort A-Z</button>
+          <button id="sort-reverse-alpha">Sort Z-A</button>
           <div id="item-counts">
             <h3 id="total-items"></h3>
             <h3 id="total-sparkling"></h3>
@@ -26,9 +27,9 @@
     <section id="controls">
       <button id="garage-button">Open Garage</button>
       <form action="submit" id="build-item">
-        <input id="item-name" class="build-input" type="text" placeholder="Item Name" />
-        <input id="item-reason" class="build-input" type="text" placeholder="Reason for Keeping" />
-        <select class="build-input" name="cleanliness" id="item-cleanliness">
+        <input id="item-name" class="build-input" type="text" placeholder="Item Name" required/>
+        <input id="item-reason" class="build-input" type="text" placeholder="Reason for Keeping" required/>
+        <select class="build-input" name="cleanliness" id="item-cleanliness" required>
           <option value="">-Select Cleanliness-</option>
           <option value="Sparkling">Sparkling</option>
           <option value="Dusty">Dusty</option>

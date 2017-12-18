@@ -28,12 +28,12 @@ const createNewItem = (event) => {
   resetInputs();
 }
 
-// const selectOption = (cleanliness) => {
-//   let cleanlinessOptions = ['Sparkling', 'Dusty', 'Rancid']
-//   cleanlinessOptions = cleanlinessOptions.filter(option => option !== cleanliness);
-//   console.log(cleanlinessOptions);
-//   return cleanlinessOptions.unshift(cleanliness);
-// }
+const selectOption = (cleanliness) => {
+  let cleanlinessOptions = ['Sparkling', 'Dusty', 'Rancid']
+  cleanlinessOptions = cleanlinessOptions.filter(option => option !== cleanliness);
+
+  return cleanlinessOptions.unshift(cleanliness);
+}
 
 const sortItems = (items) => {
   const sortedItems = items.sort((a, b) => {
@@ -50,15 +50,19 @@ const sortItems = (items) => {
   appendItems(sortedItems);
 }
 
-const appendItems = (items) => {
-  items.forEach((item) => {
-    // cleanlinessSelection = selectOption(item.cleanliness);
+const appendItems = (item) => {
+  
     $(`#item-list`).append(`
       <div id="item-${item.id}" class="item">
         <h2 class="name">${item.name}</h2>
+        <p class="reason">${item.reason}</p>
+        <select class="single-item-cleanliness" name="cleanliness">
+          <option value="Sparkling">${item.cleanliness}</option>
+          <option value="Dusty">${selectOption(item.cleanliness)[1]}</option>
+          <option value="Rancid">${selectOption(item.cleanliness)[2]}</option>
+        </select>
       </div>
     `)
-  })
 }
 
 const filterType = (items, type) => {
@@ -77,8 +81,9 @@ const fetchItems = () => {
   fetch(`/api/v1/garageItems`)
     .then(response => response.json())
     .then(parsedItems => {
-      appendCount(parsedItems)
-      sortItems(parsedItems)
+      parsedItems.forEach(item => appendItems(item));
+      sortItems(parsedItems);
+      appendCount(parsedItems);
     })
     .catch(error => console.error(error))
 }
@@ -93,7 +98,12 @@ const toggleDoor = () => {
   });
 }
 
+const toggleAlpha = () => {
+
+}
+
 fetchItems();
 
 $('#submit-item').on('click', (event) => createNewItem(event))
 $('#garage-button').on('click', toggleDoor)
+$('#sort-alpha').on('click', toggleAlpha)
