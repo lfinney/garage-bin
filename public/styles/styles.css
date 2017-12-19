@@ -1,3 +1,6 @@
+* {
+  font-family: 'Open Sans', sans-serif; }
+
 #garage {
   height: 70vh;
   width: 100vw;
@@ -11,6 +14,11 @@
   background-color: #2A2C37;
   overflow: hidden;
   position: absolute; }
+
+button {
+  background-color: #2A2C37;
+  color: #FDFFDB;
+  border-radius: 10px; }
 
 .button-container {
   display: flex;
@@ -34,13 +42,19 @@
 
 #item-counts {
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-around; }
 
 .item {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; }
+  flex-direction: column;
+  border-radius: 10px;
+  margin: 20px;
+  border: 2px solid black;
+  background-color: #2A2C37;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.7);
+  color: #FDFFDB; }
 
 .item-info {
   display: flex;
@@ -53,6 +67,8 @@ select.single-item-cleanliness {
 
 #controls {
   display: flex;
+  background-image: url(../assets/brick-wall.png);
+  background-size: 50%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
