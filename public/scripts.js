@@ -6,8 +6,11 @@ const postItem = (item) => {
       'content-type': 'application/json'
     }
   })
-  .then(response => response.json())
-  .catch(error => console.error(error))
+  .then(response => {
+    response.json();
+    fetchItems('alpha');
+  })
+  .catch(error => console.error(error));
 }
 
 const resetInputs = () => {
@@ -25,8 +28,6 @@ const createNewItem = (event) => {
   }
   postItem(newItem);
   resetInputs();
-  clearList();
-  fetchItems('alpha');
 }
 
 const selectOption = (cleanliness) => {
