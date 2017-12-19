@@ -19,7 +19,7 @@
   overflow: hidden;
   position: absolute;
   border-bottom: $border;
-  box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, .7);
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, .7);
 }
 
 button {
@@ -36,6 +36,7 @@ button {
 
 .sort-button {
   margin: 10px 0;
+  width: 150px;
 }
 
 #item-list {
@@ -45,6 +46,9 @@ button {
   background-color: $lightmain;
   margin: auto;
   overflow: scroll;
+  border-left: $border;
+  border-right: $border;
+  border-color: $white;
 }
 
 #garage-overview {
@@ -55,6 +59,10 @@ button {
 #item-counts {
   display: flex;
   justify-content: space-around;
+  margin: 20px;
+  border: $border;
+  background-color: $white;
+  color: $darkmain;
 }
 
 .item {
@@ -109,6 +117,8 @@ select.single-item-cleanliness {
 .build-input {
   width: 100%;
   margin: 7px 0;
+  box-shadow: $shadow;
+  border: $border;
 }
 
 #submit-item, #item-cleanliness {

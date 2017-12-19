@@ -14,8 +14,8 @@
   background-color: #2A2C37;
   overflow: hidden;
   position: absolute;
-  border-bottom: solid black 4px;
-  box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.7); }
+  border-bottom: solid black 2px;
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.7); }
 
 button {
   background-color: #2A2C37;
@@ -28,7 +28,8 @@ button {
   align-items: center; }
 
 .sort-button {
-  margin: 10px 0; }
+  margin: 10px 0;
+  width: 150px; }
 
 #item-list {
   height: 100%;
@@ -36,7 +37,10 @@ button {
   min-width: 400px;
   background-color: #788AA3;
   margin: auto;
-  overflow: scroll; }
+  overflow: scroll;
+  border-left: solid black 2px;
+  border-right: solid black 2px;
+  border-color: #FDFFDB; }
 
 #garage-overview {
   display: flex;
@@ -44,7 +48,11 @@ button {
 
 #item-counts {
   display: flex;
-  justify-content: space-around; }
+  justify-content: space-around;
+  margin: 20px;
+  border: solid black 2px;
+  background-color: #FDFFDB;
+  color: #2A2C37; }
 
 .item {
   display: flex;
@@ -90,7 +98,9 @@ select.single-item-cleanliness {
 
 .build-input {
   width: 100%;
-  margin: 7px 0; }
+  margin: 7px 0;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.7);
+  border: solid black 2px; }
 
 #submit-item, #item-cleanliness {
   width: 50%; }
