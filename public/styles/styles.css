@@ -1,16 +1,24 @@
 #garage {
-  height: 75vh;
+  height: 70vh;
   width: 100vw;
   background-color: #414456; }
 
 #garage-door {
-  height: 75vh;
+  height: 70vh;
   width: 100%;
   background-image: url(../assets/door-texture.png);
   background-size: 50%;
   background-color: #2A2C37;
   overflow: hidden;
   position: absolute; }
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center; }
+
+.sort-button {
+  margin: 10px 0; }
 
 #item-list {
   height: 100%;
@@ -46,11 +54,12 @@ select.single-item-cleanliness {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 25vh;
+  height: 30vh;
   width: 100vw; }
 
 #garage-button {
-  width: 200px; }
+  width: 200px;
+  margin-top: 7px; }
 
 #build-item {
   width: 400px;
@@ -61,7 +70,7 @@ select.single-item-cleanliness {
 
 .build-input {
   width: 100%;
-  margin: 10px 0; }
+  margin: 7px 0; }
 
 #submit-item, #item-cleanliness {
   width: 50%; }

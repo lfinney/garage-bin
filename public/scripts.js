@@ -127,7 +127,6 @@ const patchCondition = (id, condition) => {
     }
   })
   .then(res => console.log(res))
-  // .then(response => response.json())
   .catch(error => console.error(error))
 }
 
